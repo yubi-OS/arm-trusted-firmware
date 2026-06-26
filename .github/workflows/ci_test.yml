@@ -74,7 +74,7 @@ jobs:
             SPD=opteed \
             DEBUG=1 \
             bl31
-          ls -l build/qemu/debug/bl31.elf build/qemu/debug/bl31.bin
+          ls -l build/qemu/debug/bl31/bl31.elf build/qemu/debug/bl31.bin
 
       - name: Stage placeholder BL32 / BL33 payloads
         run: |
@@ -101,7 +101,7 @@ jobs:
             MBEDTLS_DIR="${GITHUB_WORKSPACE}/mbedtls" \
             DEBUG=1 \
             all fip
-          ls -l build/qemu/debug/bl31.elf build/qemu/debug/fip.bin
+          ls -l build/qemu/debug/bl31/bl31.elf build/qemu/debug/fip.bin
 
       - name: Upload firmware artifacts
         if: always()
@@ -109,7 +109,7 @@ jobs:
         with:
           name: tfa-qemu-${{ matrix.runner }}
           path: |
-            build/qemu/debug/bl31.elf
+            build/qemu/debug/bl31/bl31.elf
             build/qemu/debug/bl31.bin
             build/qemu/debug/fip.bin
           if-no-files-found: warn
